@@ -33,11 +33,13 @@
             }
         ?>
         <div class="form-div">
-            <form method="post" action="recup.php">
+            <form method="post" action="authenticationController.php">
                 <label for="username-input">Username</label><br/>
                 <input class="text-input" id="username-input" type="text" name="username" /><br/>
                 <label for="password-input">Password</label><br/>
                 <input class="text-input" id="password-input" type="password" name="password" /><br/>
+                <input type="checkbox" id="new-user-checkbox" name="isNewUser" />
+                <label for="new-user-checkbox">I am a new user.</label><br/>
                 <button class="submit-button" type="submit">Login</button>
             </form>
         </div>

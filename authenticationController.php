@@ -12,6 +12,9 @@
     } else if ($resultCheckCredentials === 'incorrect password') {
         header("Location:login.php?type=error&msg=The password is incorrect.");
         die();
+    } else if ($resultCheckCredentials === 'duplicate user') {
+        header("Location:login.php?type=error&msg=This user already exists.");
+        die();
     } else if ($resultCheckCredentials === 'incomplete') {
         header("Location:login.php?type=error&msg=Please fill in your credentials.");
         die();
