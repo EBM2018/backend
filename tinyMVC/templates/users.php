@@ -43,6 +43,7 @@ foreach ($users as $dataUser)
 {
 	echo "<option value=\"$dataUser[id]\">\n";
 	echo  $dataUser["pseudo"];
+//TODO: ajouter le statut des utilisateurs
 	echo "\n</option>\n"; 
 }
 ?>

@@ -23,20 +23,30 @@ function listerUtilisateurs($classe = "both")
 	// Lorsqu'elle vaut "nbl", elle ne renvoie que les utilisateurs non blacklistés
 
 	$SQL = "select * from users";
+	if ($classe == "bl")
+		$SQL .= " WHERE blacklist=1"; 
+	else if ($classe == "nbl")
+		$SQL .= " WHERE blacklist=0"; 
+
+	// var .= valeur 
+	// <=> var = var . valeur 
+
 	return parcoursRs(SQLSelect($SQL));
 
 }
 
 function interdireUtilisateur($idUser)
 {
-	// cette fonction affecte le booléen "blacklist" à vrai 
-
+	// cette fonction affecte le booléen "blacklist" à vrai
+	$SQL = "UPDATE users SET blacklist=1";
+	SQLUpdate($SQL); // appelle mysql_query
 }
 
 function autoriserUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à faux 
-
+	$SQL = "UPDATE users SET blacklist=0";
+	SQLUpdate($SQL);
 }
 
 /********* EXERCICE 4 *********/

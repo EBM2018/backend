@@ -31,11 +31,12 @@ echo "<?xml version=\"1.0\" encoding=\"iso-8859-15\" ?>";
 <div id="banniere">
 
 <div id="logo">
-<img src="ressources/" />
+<img src="ressources/ec-lille-rect.png" />
 </div>
 
 <a href="index.php?view=accueil">Accueil</a>
 <a href="index.php?view=users">Utilisateurs</a>
+<a href="index.php?view=conversations">Conversations</a>
 
 <?php
 // Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 

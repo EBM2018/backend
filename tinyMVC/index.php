@@ -22,7 +22,8 @@ Les formulaires de toutes les vues générées enverront leurs données vers la page
 	$view = valider("view"); 
 
 	// S'il est vide, on charge la vue accueil par défaut
-	if (!$view) $view = "accueil"; 
+	if (!$view) 
+		$view = "accueil"; 
 
 	// En fonction de la vue à afficher, on appelle tel ou tel template
 	switch($view)
