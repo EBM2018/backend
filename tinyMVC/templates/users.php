@@ -43,7 +43,12 @@ foreach ($users as $dataUser)
 {
 	echo "<option value=\"$dataUser[id]\">\n";
 	echo  $dataUser["pseudo"];
-//TODO: ajouter le statut des utilisateurs
+	//echo  " (" . $dataUser["blacklist"] . ")";
+	//if ($dataUser["blacklist"]) echo " (bl)"; 
+	//else echo " (nbl)";
+
+	echo $dataUser["blacklist"] ? " (bl)" : " (nbl)"; 
+
 	echo "\n</option>\n"; 
 }
 ?>
