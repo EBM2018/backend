@@ -1,0 +1,64 @@
+h1 {
+    text-align: center;
+}
+
+.msg-span {
+    padding: 3px;
+    border: 1px dotted black;
+}
+
+.msg-div {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.error-text {
+    color: red;
+    font-weight: bold;
+    border-color: red;
+}
+
+.info-text {
+    color: deepskyblue;
+    font-style: italic;
+    border-color: deepskyblue;
+}
+
+.submit-button {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid forestgreen;
+    color: forestgreen;
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.submit-button:hover {
+    background-color: forestgreen;
+    border: 1px solid black;
+    color: black;
+}
+
+.submit-button {
+    text-decoration: none;
+}
+
+.text-input {
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    font-size: 20px;
+}
+
+.text-input:focus {
+    border-color: forestgreen;
+}
+
+.form-div {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+h1, .disconnect-div {
+    text-align: center;
+}
+
+.disconnect-button {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid mediumvioletred;
+    color: mediumvioletred;
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.disconnect-button:hover {
+    background-color: mediumvioletred;
+    border: 1px solid black;
+    color: black;
+}
