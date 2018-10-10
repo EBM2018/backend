@@ -38,14 +38,14 @@ function listerUtilisateurs($classe = "both")
 function interdireUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à vrai
-	$SQL = "UPDATE users SET blacklist=1";
+	$SQL = "UPDATE users SET blacklist=1 WHERE id='$idUser'";
 	SQLUpdate($SQL); // appelle mysql_query
 }
 
 function autoriserUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à faux 
-	$SQL = "UPDATE users SET blacklist=0";
+	$SQL = "UPDATE users SET blacklist=0 WHERE id='$idUser'";
 	SQLUpdate($SQL);
 }
 

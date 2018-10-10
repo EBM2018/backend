@@ -6,7 +6,7 @@ session_start();
 	include_once "libs/maLibSecurisation.php"; 
 	include_once "libs/modele.php"; 
 
-	$addArgs = "";
+	$qs = "";
 
 	if ($action = valider("action"))
 	{
@@ -29,10 +29,28 @@ session_start();
 		// Un paramètre action a été soumis, on fait le boulot...
 		switch($action)
 		{
-			
+
+			// TODO : réagir aux opérations "Interdire" et "Autoriser"
+			case 'Autoriser' : 
+				// 1) récupérer données supplémentaires (idUser ici)
+				//if (utilisateur connecté)
+				if ($idUser = valider("idUser")) {
+					// 2) appeler les fonctions de la couche modele 
+					autoriserUtilisateur($idUser);
+				}
+				// 3) sélectionner la nouvelle vue à afficher 
+				$qs ="?view=users";
+			break; 
+
+			case 'Interdire' : 
+				if ($idUser = valider("idUser")) {
+					interdireUtilisateur($idUser);
+				}
+				$qs ="?view=users";
+			break; 
+
+
 			// Connexion //////////////////////////////////////////////////
-
-
 			case 'Connexion' :
 				// On verifie la presence des champs login et passe
 				if ($login = valider("login"))
