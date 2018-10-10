@@ -6,10 +6,13 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php")
 	header("Location:../index.php?view=login");
 	die("");
 }
-
 ?>
 
 <div id="corps">
+
+<?php
+if ($msg = valider("msg")) echo "<h2>$msg</h2>";
+?>
 
 <h1>Connexion</h1>
 

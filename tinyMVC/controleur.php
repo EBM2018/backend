@@ -58,12 +58,28 @@ session_start();
 				{
 					// On verifie l'utilisateur, et on crée des variables de session si tout est OK
 					// Cf. maLibSecurisation
-					verifUser($login,$passe); 	
+					if (!verifUser($login,$passe)) {
+					// TODO: afficher un message dans la vue login 
+					// en cas d'erreur  	
+					$qs = "?view=login&msg=" . urlencode("Identifiants incorrects"); 
+					}
+					
 				}
 
 				// On redirigera vers la page index automatiquement
 			break;
+
+			case 'Logout': 
+			case 'logout':
+				session_destroy(); 
+				$qs = "?view=login&msg=" . urlencode("A bientôt !"); 
+
+			break; 
+
+
 		}
+
+
 
 	}
 

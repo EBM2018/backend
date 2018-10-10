@@ -58,6 +58,13 @@ function verifUserBdd($login,$passe)
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
+	$SQL = "SELECT id FROM users WHERE pseudo='$login' AND passe='$passe'"; 
+	
+	/*
+	$tabRes = parcoursRS(SQLSelect($SQL));
+	if (count($tabRes)) $id = $tabRes[0]["id"]; */ 
+
+	return SQLGetChamp($SQL);
 
 	// On utilise SQLGetCHamp
 	// si on avait besoin de plus d'un champ
@@ -67,6 +74,8 @@ function verifUserBdd($login,$passe)
 function isAdmin($idUser)
 {
 	// vérifie si l'utilisateur est un administrateur
+	$SQL= "SELECT admin FROM users WHERE id='$idUser'";
+	return SQLGetChamp($SQL);
 }
 
 /********* EXERCICE 5 *********/
