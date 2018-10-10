@@ -39,14 +39,14 @@ session_start();
 					autoriserUtilisateur($idUser);
 				}
 				// 3) sélectionner la nouvelle vue à afficher 
-				$qs ="?view=users";
+				$qs ="?view=users&idUser=$idUser";
 			break; 
 
 			case 'Interdire' : 
 				if ($idUser = valider("idUser")) {
 					interdireUtilisateur($idUser);
 				}
-				$qs ="?view=users";
+				$qs ="?view=users&idUser=$idUser";
 			break; 
 
 

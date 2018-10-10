@@ -38,12 +38,46 @@ tprint($users);	// préférer un appel à mkTable($users);
 <?php
 $users = listerUtilisateurs();
 
+// 3.2 : on récupère l'id du dernier utilisateur manipulé 
+$lastIdUser = valider("idUser");
+
 // préférer un appel à mkSelect("idUser",$users, ...)
 foreach ($users as $dataUser)
 {
-	echo "<option value=\"$dataUser[id]\">\n";
+	// faut-il préselectionner ? 
+	// on utilise un attribut "selected" si nécessaire 
+	if ( $dataUser["id"] == $lastIdUser)
+		$sel = "selected";
+	else $sel =""; 
+
+	echo "<option $sel value=\"$dataUser[id]\">\n";
 	echo  $dataUser["pseudo"];
-	//echo  " (" . $dataUser["blacklist"] . ")";
+	// echo  " (" . $dataUser["blacklist"] . ")";
+	// echo  " ($dataUser[blacklist])";
+/*
+& esperluète - ampersand 
+- tiret - dash 
+# dièse - hash 
+#! hashbang
+_ underscore 
+| pipe 
+/ slash 
+\ antislash - backslash 
+{ accolade - brace 
+" guillemet - double quote - autorise l'interprétation
+' apostrophe - tick == quote - banalise tous les caractères 
+` backquote - `cmd` <=> $(cmd) en shell 
+		en js `${variable}`
+		en SQL `noms des champs ou tables `
+		très utile pour les mots-réservés 
+	Ex : SELECT date, contenu FROM messages 
+		provoque une erreur 
+		car date est le nom d'une fonction SQL!!
+	Solution : SELECT `date`, contenu FROM messages 
+
+*/
+
+
 	//if ($dataUser["blacklist"]) echo " (bl)"; 
 	//else echo " (nbl)";
 
