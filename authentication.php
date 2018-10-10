@@ -13,7 +13,17 @@ function validate () {
 }
 
 function checkCredentials() {
-    return validate("username", "password");
+    if (validate("username", "password")) {
+        $credentials = getCredentials();
+        $mysqliLink = mysqli_connect('localhost', 'Lenophie', 'root', 'tp_session');
+        $matchedUserPassword = mysqli_query($mysqliLink, 'SELECT `password` FROM `users` WHERE `username` = "' . $credentials["username"] .'" LIMIT 1');
+        $matchedUserPassword = mysqli_fetch_assoc($matchedUserPassword)["password"];
+
+        if ($matchedUserPassword === NULL) return 'incorrect user';
+        if (password_verify($credentials["password"], $matchedUserPassword)) return 'correct';
+        return 'incorrect password';
+    }
+    return 'incomplete';
 }
 
 function loginSession() {
@@ -22,4 +32,15 @@ function loginSession() {
 
 function getUsername() {
     return $_POST["username"];
+}
+
+function getPassword() {
+    return $_POST["password"];
+}
+
+function getCredentials() {
+    return [
+        'username' => getUsername(),
+        'password' => getPassword()
+    ];
 }
