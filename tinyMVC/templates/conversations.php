@@ -1,7 +1,7 @@
 <?php
-// Ce fichier permet de tester les fonctions développées dans le fichier malibforms.php
+// Ce fichier permet de tester les fonctions dÃ©veloppÃ©es dans le fichier malibforms.php
 
-// Si la page est appelée directement par son adresse, on redirige en passant pas la page index
+// Si la page est appelÃ©e directement par son adresse, on redirige en passant pas la page index
 if (basename($_SERVER["PHP_SELF"]) == "conversations.php")
 {
 	header("Location:../index.php?view=conversations");
@@ -24,7 +24,7 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 $conversations = listerConversations("actives");
 //mkTable($conversations, array("theme","id"));
 mkLiens($conversations,"theme","id","index.php?view=chat", "idConv");
-// Comment n'afficher que id & thèmes ?
+// Comment n'afficher que id & thÃ¨mes ?
 // A remplacer par mkLiens
 ?>
 
@@ -56,12 +56,12 @@ mkInput("submit","action","Supprimer");
 endForm();
 
 mkForm("controleur.php");
-mkInput("text","theme","Thème ?");
+mkInput("text","theme","ThÃ¨me ?");
 mkInput("hidden","action","creerConv");
-mkInput("submit","","Créer Conversation");
+mkInput("submit","","CrÃ©er Conversation");
 endForm();
 
-//TODO : développer le controleur; vérifier que tout fonctionne 
+//TODO : dÃ©velopper le controleur; vÃ©rifier que tout fonctionne 
 ?>
 
 

@@ -103,6 +103,18 @@ session_start();
 				}
 				$qs = "?view=conversations&idConv=$idConv";
 			break; 
+
+			case 'Poster': 
+				if ($idConv = valider("idConv")) 
+				if ($contenu = valider("contenu")) 
+				if ($idUser = valider("idUser","SESSION"))
+				{
+					$dataConv = getConversation($idConv); 
+					if ($dataConv["active"])
+						enregistrerMessage($idConv, $idUser, $contenu); 
+				}
+				$qs = "?view=chat&idConv=$idConv";
+			break; 
 		}
 
 

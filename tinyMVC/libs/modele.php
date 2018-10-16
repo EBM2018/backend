@@ -58,7 +58,7 @@ function verifUserBdd($login,$passe)
 	// renvoie faux si user inconnu
 	// renvoie l'id de l'utilisateur si succès
 
-	$SQL = "SELECT id FROM users WHERE pseudo='$login' AND passe='$passe'"; 
+	$SQL = "SELECT id FROM users WHERE pseudo='$login' AND passe=md5('$passe')"; 
 	
 	/*
 	$tabRes = parcoursRS(SQLSelect($SQL));
@@ -136,11 +136,23 @@ function enregistrerMessage($idConversation, $idAuteur, $contenu)
 {
 	// Enregistre un message dans la base en encodant les caractères spéciaux HTML : <, > et & 
 	// pour interdire les messages HTML
+	// ie failles XSS 
+	$contenu = htmlspecialchars($contenu); 
+	$SQL = "INSERT INTO messages(idConversation, idAuteur,contenu)"; 
+	$SQL .= " VALUES('$idConversation', '$idAuteur', '$contenu')"; 
 
-	
+	SQLInsert($SQL); 
 }
 function listerMessages($idConv,$format="asso")
 {
+	$SQL = "SELECT u.pseudo, u.couleur, m.contenu";
+	$SQL .= " FROM users u INNER JOIN messages m"; 
+	$SQL .= " ON u.id = m.idAuteur"; 
+	$SQL .= " WHERE m.idConversation = '$idConv'"; 
+	$SQL .= " AND u.blacklist = 0"; 
+
+	return parcoursRs(SQLSelect($SQL)); 
+
 	// Liste les messages de cette conversation, au format JSON ou tableau associatif
 	// Champs à extraire : contenu, auteur, couleur 
 	// en ne renvoyant pas les utilisateurs blacklistés

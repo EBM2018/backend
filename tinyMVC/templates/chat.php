@@ -39,14 +39,37 @@ if (!$dataConv)
 }
 
 // Afficher le thème de la conversation courante
-tprint($dataConv);
+echo "<h1>$dataConv[theme]</h1>";
 
 // Les messages 
 $messages = listerMessages($idConv);
-tprint($messages);
+// tprint($messages);
+foreach ($messages as $dataMsg) {
+	echo '<div style="color:' .  $dataMsg["couleur"] . ';" >'; 
+	echo "[$dataMsg[pseudo]] "; 
+	// équivalent à 
+	// 	echo "[" . $dataMsg["pseudo"] . "]"; 
+	echo $dataMsg["contenu"];
+	echo "</div>";
+}
+
+echo "<p></p>";
 
 // Ajout d'un message ?
 // Seulement si la conversation est active et si l'utilisateur est identifié ... 
+// TODO : dév. le contrôleur
+
+if (	$dataConv["active"]  
+		&& isset($_SESSION["connecte"])
+	) {
+	mkForm("controleur.php"); 
+	mkInput("text","contenu", ""); 
+	mkInput("hidden","idConv", $idConv); 
+	mkInput("submit","action", "Poster"); 
+}
+
+
+
 // Si la conversation est active, on écrit un peu de code javascript pour recharger la page régulièrement
 ?>
 
