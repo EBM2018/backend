@@ -42,7 +42,25 @@ mkTable($conversations, array("theme","id"));
 <?php
 
 $conversations = listerConversations(); // toutes
-mkTable($conversations); // A remplacer par mkSelect
+// TODO: fabriquer un formulaire pour activer/archiver les conversations 
+// Utiliser les fonctions mkForm, mkSelect, mkInput... de la librairie maLibForms 
+//mkTable($conversations); // A remplacer par mkSelect
+
+$lastIdConv = valider("idConv");
+mkForm("controleur.php");
+mkSelect("idConv",$conversations, "id","theme",$lastIdConv);
+mkInput("submit","action","Activer");
+mkInput("submit","action","Archiver");
+mkInput("submit","action","Supprimer");
+endForm();
+
+mkForm("controleur.php");
+mkInput("text","theme","Thème ?");
+mkInput("hidden","action","creerConv");
+mkInput("submit","","Créer Conversation");
+endForm();
+
+//TODO : développer le controleur; vérifier que tout fonctionne 
 ?>
 
 

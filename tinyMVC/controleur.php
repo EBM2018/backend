@@ -76,7 +76,33 @@ session_start();
 
 			break; 
 
+			case 'Activer': 
+				if ($idConv = valider("idConv")) {
+					reactiverConversation($idConv); 
+				}
+				$qs = "?view=conversations&idConv=$idConv";
+			break;
 
+			case 'Archiver': 
+				if ($idConv = valider("idConv")) {
+					archiverConversation($idConv); 
+				}
+				$qs = "?view=conversations&idConv=$idConv";
+			break; 
+
+			case 'Supprimer': 
+				if ($idConv = valider("idConv")) {
+					supprimerConversation($idConv); 
+				}
+				$qs = "?view=conversations";
+			break;
+
+			case 'creerConv': 
+				if ($theme = valider("theme")) {
+					$idConv = creerConversation($theme); 
+				}
+				$qs = "?view=conversations&idConv=$idConv";
+			break; 
 		}
 
 
