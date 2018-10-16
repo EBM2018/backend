@@ -73,6 +73,14 @@ if (	$dataConv["active"]
 // Si la conversation est active, on écrit un peu de code javascript pour recharger la page régulièrement
 ?>
 
+<script>
+function recharger(){
+	document.location.reload();
+}
+
+window.setTimeout(recharger,5000);
+</script>
+
 
 
 
