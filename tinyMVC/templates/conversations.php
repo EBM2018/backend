@@ -22,7 +22,8 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 
 <?php
 $conversations = listerConversations("actives");
-mkTable($conversations); 
+mkTable($conversations, array("theme","id"));
+
 // Comment n'afficher que id & thèmes ?
 // A remplacer par mkLiens
 ?>
@@ -31,7 +32,7 @@ mkTable($conversations);
 
 <?php
 $conversations = listerConversations("inactives");
-mkTable($conversations); 
+mkTable($conversations, array("theme","id")); 
 // A remplacer par mkLiens
 ?>
 

@@ -82,6 +82,7 @@ function SQLInsert($sql)
 	}
 
 	$lastInsertId = $dbh->lastInsertId();
+	// NB : il faudrait sans doute intégrer l'exécution de la requête et la récupération du lastInsertId dans une même transaction PDO... 
 	$dbh = null; 
 	return $lastInsertId;
 }

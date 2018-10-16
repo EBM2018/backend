@@ -84,29 +84,48 @@ function listerConversations($mode="tout")
 {
 	// Liste toutes les conversations ($mode="tout")
 	// OU uniquement celles actives  ($mode="actives"), ou inactives  ($mode="inactives")
+	$SQL = "SELECT * FROM conversations"; 
+	if ($mode == "actives") $SQL .= " WHERE active=1"; 
+	if ($mode == "inactives") $SQL .= " WHERE active=0";
+	return parcoursRs(SQLSelect($SQL));  
+	// SQLSelect renvoie un objet résultat mysql 
+	// parcoursRs parcourt le résultat et fabrique un tableau PHP plus facile à manipuler 
 }
 
 function archiverConversation($idConversation)
 {
 	// rend une conversation inactive
-
+	$SQL = "UPDATE conversations SET active=0 WHERE id='$idConversation'"; 
+	SQLUpdate($SQL); 
 }
 
 function reactiverConversation($idConversation)
 {
 	// rend une conversation active
-
+	$SQL = "UPDATE conversations SET active=1 WHERE id='$idConversation'"; 
+	SQLUpdate($SQL); 
 }
 
 function creerConversation($theme)
 {
 	// crée une nouvelle conversation et renvoie son identifiant
+	$SQL = "INSERT INTO conversations(active,theme) VALUES (0,'$theme')"; 
+	return SQLInsert($SQL);
 
 }
 
 function supprimerConversation($idConv)
 {
 	// supprime une conversation et ses messages
+	// V1 : écrire du SQL pour supprimer les messages avant de supprimer la conversation 
+	//$SQL = "DELETE FROM messages WHERE idConversation='$idConv'"; 
+	//SQLDelete($SQL); 
+	$SQL = "DELETE FROM conversations WHERE id='$idConv'";
+	SQLDelete($SQL); 
+	// V2 : activer les suppressions en cascade directement dans le moteur de BDD 	
+	// Passer les tables en type "INNODB"
+	// Spécifier les contraintes d'intégrité référentielle de manière graphique
+	// OU par du code SQL 
 
 }
 
